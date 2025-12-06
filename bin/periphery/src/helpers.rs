@@ -49,7 +49,7 @@ pub fn registry_token(
 }
 
 pub fn parse_extra_args(extra_args: &[String]) -> String {
-  let args = extra_args.join(" ");
+  let args = extra_args.iter().map(|s| s.trim()).collect::<Vec<_>>().join(" ");
   if !args.is_empty() {
     format!(" {args}")
   } else {

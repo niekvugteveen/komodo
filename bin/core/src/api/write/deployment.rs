@@ -101,7 +101,7 @@ impl Resolve<WriteArgs> for CreateDeploymentFromContainer {
       config.image = container_config
         .image
         .map(|image| DeploymentImage::Image { image });
-      config.command = container_config.cmd.join(" ").into();
+      config.command = container_config.cmd.iter().map(|s| s.trim()).collect::<Vec<_>>().join(" ").into();
       config.environment = container_config
         .env
         .into_iter()
